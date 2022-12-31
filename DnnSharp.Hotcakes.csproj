@@ -1,0 +1,42 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <OutputType>Library</OutputType>
+    <Configurations>Develop;Release;ReleaseAutoBuild</Configurations>
+    <AssemblyName>DnnSharp.Hotcakes</AssemblyName>
+    <RootNamespace>DnnSharp.Hotcakes</RootNamespace>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'ReleaseAutoBuild|AnyCPU'">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Hotcakes.Commerce">
+      <HintPath>.lib\Hotcakes.Commerce.dll</HintPath>
+    </Reference>
+    <Reference Include="Hotcakes.CommerceDTO">
+      <HintPath>.lib\Hotcakes.CommerceDTO.dll</HintPath>
+    </Reference>
+    <Reference Include="Hotcakes.Modules">
+      <HintPath>.lib\Hotcakes.Modules.dll</HintPath>
+    </Reference>
+    <Reference Include="Hotcakes.Web">
+      <HintPath>.lib\Hotcakes.Web.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DnnSharp.Common\DnnSharp.Common.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="DotNetNuke.Core" Version="9.9.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
+  </ItemGroup>
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="if $(ConfigurationName) == Debug goto copyfiles&#xD;&#xA;if $(ConfigurationName) == Release goto copyfiles&#xD;&#xA;if $(ConfigurationName) == Develop goto copyfiles&#xD;&#xA;goto end&#xD;&#xA;&#xD;&#xA;:copyfiles&#xD;&#xA;&#xD;&#xA;xcopy &quot;$(ProjectDir)Config\*.*&quot; &quot;$(SolutionDir)DesktopModules\DnnSharp\Common\Config\*.*&quot; /e /s /y /q&#xD;&#xA;copy &quot;$(TargetDir)$(TargetName).dll&quot; &quot;$(ProjectDir)../../../../bin/$(TargetName).dll&quot;&#xD;&#xA;copy &quot;$(TargetDir)$(TargetName).pdb&quot; &quot;$(ProjectDir)../../../../bin/$(TargetName).pdb&quot;&#xD;&#xA;&#xD;&#xA;:end" />
+  </Target>
+</Project>

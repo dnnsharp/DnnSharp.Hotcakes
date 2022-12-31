@@ -1,0 +1,46 @@
+<dotnetnuke version="5.0" type="Package" xmlns:fo="http://www.w3.org/1999/XSL/Format">
+  <packages>
+    <package name="DnnSharp.Hotcakes" type="Module" version="05.20.01">
+      <friendlyName>DnnSharp.Hotcakes</friendlyName>
+      <description>Adds actions for Hotcakes Commerce.</description>
+      <iconFile>images/icon_dashboard.png</iconFile>
+      <owner>
+        <name>DNN Sharp</name>
+        <organization>DNN Sharp</organization>
+        <url>http://store.dnnsoftware.com/home/product-details/hotcakes-add-on</url>
+        <email>support@dnnsharp.com</email>
+      </owner>
+      <license src="license.txt" />
+      <releaseNotes src="release-notes.html" />
+      <!-- <azureCompatible>true</azureCompatible> -->
+      <dependencies>
+        <dependency type="CoreVersion">09.09.00</dependency>
+      </dependencies>
+      <components>
+        <component type="Assembly">
+          <assemblies>
+            <assembly>
+              <name>DnnSharp.Hotcakes.dll</name>
+              <sourceFileName>DnnSharp.Hotcakes.dll</sourceFileName>
+              <version>05.20.01</version>
+            </assembly>
+            <assembly>
+              <name>DnnSharp.Common.dll</name>
+              <sourceFileName>DnnSharp.Common.dll</sourceFileName>
+              <version>05.20.07</version>
+            </assembly>
+          </assemblies>
+        </component>
+        <component type="ResourceFile">
+          <resourceFiles>
+            <basePath>
+            </basePath>
+            <resourceFile>
+              <name>Resources.Hotcakes.zip</name>
+            </resourceFile>
+          </resourceFiles>
+        </component>
+      </components>
+    </package>
+  </packages>
+</dotnetnuke>
